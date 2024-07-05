@@ -3,7 +3,7 @@ import data from '../../static/fields/data.json';
 import classes from './SearchField.module.css';
 import arrow from '../../static/images/right_arrow.svg';
 
-const SearchField = ({searchFieldPosition, inputText, handleSearchChange, handleEnter}) => {
+const SearchField = ({ inputText, handleSearchChange, handleEnter }) => {
 
     const handleKeyEnter = e => {
         if (e.key === 'Enter') {
@@ -12,7 +12,7 @@ const SearchField = ({searchFieldPosition, inputText, handleSearchChange, handle
     }
 
     return (
-        <div className={`${classes.searchfield__container} ${searchFieldPosition === 'bottom' ? classes.move_bottom : ''}`}>
+        <div className={classes.searchfield__container}>
             <input
                 className={classes.search_field}
                 placeholder={data.searchFieldText}

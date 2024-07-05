@@ -4,14 +4,18 @@ import classes from  './Sidebar.module.css';
 import cross from '../../static/images/cross.svg'
 import data from '../../static/fields/data.json';
 
-const Sidebar = ({visible, toggleSidebar}) => {
+const Sidebar = ({visible, toggleSidebar, selectHistory}) => {
     return (
         <div className={`${classes.sidebar__container} ${visible ? classes.is_open : ''}`}>
-            <SidebarIcon icon={cross} toggleSidebar={toggleSidebar}/>
+            <div style={{padding: '65px 0 0 75px'}}>
+                <SidebarIcon icon={cross} toggleSidebar={toggleSidebar}/>
+            </div>
             <div className={classes.sidebar_content}>
                 <ul>
-                    {data.historyExamples.map((item, index) => (
-                        <li key={index}>{item}</li>
+                    {Object.entries(data.historyExamples).map(([question, answer], index) => (
+                        <div onClick={() => selectHistory(question, answer)}>
+                            <li key={index}>{question}</li>
+                        </div>
                     ))}
                 </ul>
             </div>

@@ -3,16 +3,13 @@
 }
 
 .App {
-  background-image: url('./static/images/background.png');
-  background-size: contain;
+  background-color: #201F1F;
   height: 100vh;
   display: flex;
   justify-content: center;
 }
 
 .content__container {
-  display: flex;
-  flex-direction: row;
   width: 100%;
   position: relative;
 }
@@ -24,31 +21,41 @@
   height: 100%;
 }
 .turing_label {
-  content: "TURING";
   position: absolute;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 200px;
-  line-height: 260px;
-  color: #D7D8CE;
-  opacity: 0.9;
+  letter-spacing: -0.04em;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 16vh;
+  top: 8vh;
   text-align: center;
   -webkit-touch-callout:none;
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
-}
-.hide_label {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: #D7D8CE;
+    opacity: 0.09;
+  }
 }
 
 .dialogcontent__container {
   padding: 0 100px;
   height: 100%;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 35px 80px 45px 80px;
+}
+
+.footer__container img {
+  cursor: pointer;
 }

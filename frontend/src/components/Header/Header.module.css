@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-end;
     padding: 45px 80px;
+    z-index: 2;
 }
 
 div.profile_button {
@@ -18,3 +19,6 @@ div.profile_button {
     background-color: rgba(20, 26, 83, 0.753);
 }
 
+.logo img {
+    cursor: pointer;
+}

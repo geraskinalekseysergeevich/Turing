@@ -5,7 +5,7 @@ import AnswerField from '../AnswerField/AnswerField';
 import QuestionField from '../QuestionField/QuestionField';
 import data from '../../static/fields/data.json'
 
-const DialogScreen = ({ setShowTuringTitle }) => {
+const DialogScreen = ({selectedHistory}) => {
 
     const [inputText, setInputText] = useState('')
     const [questionText, setQuestionText] = useState('')
@@ -23,18 +23,13 @@ const DialogScreen = ({ setShowTuringTitle }) => {
     };
 
     const handleEnter = () => {
-        const answer = getRandomAnswer()
-        setShowTuringTitle(false)
-        setSearchFieldPosition('bottom')
-        setTimeout(() => {
+        if (inputText !== '')  {
+            const answer = getRandomAnswer()
+            setSearchFieldPosition('bottom')
             setQuestionText(inputText)
-
-            setTimeout(() => {
-                setAnswerText(answer)
-            }, 600)
-        }, 600)
-        
-        setInputText('')
+            setAnswerText(answer)
+            setInputText('')
+        }
     }
 
     return (

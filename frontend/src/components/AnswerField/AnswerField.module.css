@@ -1,14 +1,15 @@
 .answer_field {
     width: 100%;
     display: flex;
+    box-sizing: border-box;
+    padding: 0 25px;
 }
 .answer_field p {
     padding: 20px;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 400;
     border-radius: 25px 25px 25px 0;
     color: rgba(255, 255, 255, 1);
     line-height: calc(25 / 20);
-    background: #3D518C;
-    box-shadow: 0px 9.58px 119.81px 0px #3D518C;
+    background: #323232;
 }
