@@ -13,7 +13,7 @@ const Sidebar = ({visible, toggleSidebar, selectHistory}) => {
             <div className={classes.sidebar_content}>
                 <ul>
                     {Object.entries(data.historyExamples).map(([question, answer], index) => (
-                        <div onClick={() => selectHistory(question, answer)}>
+                        <div key={index} onClick={() => selectHistory(question, answer)}>
                             <li key={index}>{question}</li>
                         </div>
                     ))}

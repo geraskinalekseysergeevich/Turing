@@ -7,6 +7,8 @@ import DialogScreen from './components/DialogScreen/DialogScreen';
 import burger_icon from './static/images/burger_icon.svg'
 import info_icon from './static/images/info_icon.svg';
 import HistoryScreen from './components/HistoryScreen/HistoryScreen';
+import {Tooltip} from 'react-tooltip';
+import data from './static/fields/data.json'
 
 function App() {
 
@@ -25,7 +27,6 @@ function App() {
         if (quest !== '' && answ !== '') { 
             toggleSidebar()
         }
-        
     }
 
     return (
@@ -43,11 +44,6 @@ function App() {
                 }
                 <div className='page'>
                     <Header selectHistory={selectHistory}/>
-                    <div className='animation'>
-                        <div className='turing_label'>
-                            <h1>TURING</h1>
-                        </div>
-                    </div>
                     <div className='dialogcontent__container'>
                         {(selectedHistory.question !== '' && selectedHistory.answer !==  '')
                             ? <HistoryScreen selectedHistory={selectedHistory}/>
@@ -55,7 +51,13 @@ function App() {
                         }
                     </div>
                     <div className='footer__container'>
-                        <img src={info_icon} alt="info icon" />    
+                        <img src={info_icon} alt="info icon" className='tooltip_hover_element' />
+                        <Tooltip 
+                            anchorSelect=".tooltip_hover_element" 
+                            place="top-end" 
+                            className='tooltip__container'
+                            content={data.tooltipExample}
+                        />
                     </div>
                 </div>
 

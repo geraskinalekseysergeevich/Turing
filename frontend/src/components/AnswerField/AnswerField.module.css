@@ -4,7 +4,7 @@
     box-sizing: border-box;
     padding: 0 25px;
 }
-.answer_field p {
+.answer_text {
     padding: 20px;
     font-size: 20px;
     font-weight: 400;

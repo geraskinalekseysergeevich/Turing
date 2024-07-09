@@ -10,7 +10,6 @@ const DialogScreen = ({selectedHistory}) => {
     const [inputText, setInputText] = useState('')
     const [questionText, setQuestionText] = useState('')
     const [answerText, setAnswerText] = useState('')
-    const [searchFieldPosition, setSearchFieldPosition] = useState('middle')
 
     const handleSearchChange = event => {
         setInputText(event.target.value)
@@ -25,7 +24,6 @@ const DialogScreen = ({selectedHistory}) => {
     const handleEnter = () => {
         if (inputText !== '')  {
             const answer = getRandomAnswer()
-            setSearchFieldPosition('bottom')
             setQuestionText(inputText)
             setAnswerText(answer)
             setInputText('')
@@ -41,7 +39,6 @@ const DialogScreen = ({selectedHistory}) => {
                 <AnswerField answerText={answerText} />
             }
             <SearchField 
-                searchFieldPosition={searchFieldPosition}
                 inputText={inputText} 
                 handleSearchChange={handleSearchChange} 
                 handleEnter={handleEnter} 
