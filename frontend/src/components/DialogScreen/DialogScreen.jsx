@@ -7,13 +7,8 @@ import data from '../../static/fields/data.json'
 
 const DialogScreen = ({selectedHistory}) => {
 
-    const [inputText, setInputText] = useState('')
     const [questionText, setQuestionText] = useState('')
     const [answerText, setAnswerText] = useState('')
-
-    const handleSearchChange = event => {
-        setInputText(event.target.value)
-    }
 
     const getRandomAnswer = () => {
         const { answerExamples } = data;
@@ -21,13 +16,10 @@ const DialogScreen = ({selectedHistory}) => {
         return answerExamples[randomIndex];
     };
 
-    const handleEnter = () => {
-        if (inputText !== '')  {
-            const answer = getRandomAnswer()
-            setQuestionText(inputText)
-            setAnswerText(answer)
-            setInputText('')
-        }
+    const setAnswer = () => {
+        const answer = getRandomAnswer()
+        console.log(answer)
+        setAnswerText(answer)
     }
 
     return (
@@ -39,9 +31,8 @@ const DialogScreen = ({selectedHistory}) => {
                 <AnswerField answerText={answerText} />
             }
             <SearchField 
-                inputText={inputText} 
-                handleSearchChange={handleSearchChange} 
-                handleEnter={handleEnter} 
+                setAnswer={setAnswer}
+                setQuestionText={setQuestionText}
             />
         </div>
     );

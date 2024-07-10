@@ -1,0 +1,31 @@
+.grid {
+    position: absolute;
+    width: 89%;
+    height: 36%;
+    top: 18vh;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.gridhover__container {
+    z-index: 1;
+}
+
+.color_cell {
+    background-image: url('../../static/images/cell_bg.svg');
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.active {
+    /* background: rgb(0,121,194);
+    background: linear-gradient(90deg, rgba(0,121,194,1) 0%, rgba(19,95,174,1) 50%, rgba(82,141,222,1) 100%);
+    backdrop-filter: blur(4px); */
+    opacity: 1;
+}

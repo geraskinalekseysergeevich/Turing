@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import data from '../../static/fields/data.json';
 import classes from './SearchField.module.css';
 import arrow from '../../static/images/right_arrow.svg';
 
-const SearchField = ({ inputText, handleSearchChange, handleEnter, disabled=false }) => {
+const SearchField = ({ setAnswer, setQuestionText, disabled=false }) => {
+
+    const [inputText, setInputText] = useState('');
+
+    const handleSearchChange = event => {
+        setInputText(event.target.value)
+    }
+
+    const handleEnter = () => {
+        if (inputText !== '') {
+            setQuestionText(inputText)
+            setInputText('')
+            setAnswer()
+        }
+    }
 
     const handleKeyEnter = e => {
         if (e.key === 'Enter') {
-            handleEnter();
+            handleEnter()
         }
     }
 

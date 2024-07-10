@@ -9,6 +9,7 @@ import info_icon from './static/images/info_icon.svg';
 import HistoryScreen from './components/HistoryScreen/HistoryScreen';
 import {Tooltip} from 'react-tooltip';
 import data from './static/fields/data.json'
+import BgAnimation from './components/BgAnimation/BgAnimation';
 
 function App() {
 
@@ -24,13 +25,16 @@ function App() {
             question: quest, 
             answer: answ 
         })
-        if (quest !== '' && answ !== '') { 
-            toggleSidebar()
-        }
+        toggleSidebar()
+    }
+
+    const resetStates = () => {
+        window.location.reload()
     }
 
     return (
         <div className="App">
+            <BgAnimation />
             <div className='content__container'>
                 <Sidebar 
                     visible={visible} 
@@ -43,7 +47,7 @@ function App() {
                     </div>
                 }
                 <div className='page'>
-                    <Header selectHistory={selectHistory}/>
+                    <Header resetStates={resetStates}/>
                     <div className='dialogcontent__container'>
                         {(selectedHistory.question !== '' && selectedHistory.answer !==  '')
                             ? <HistoryScreen selectedHistory={selectedHistory}/>
