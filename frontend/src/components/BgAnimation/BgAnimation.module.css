@@ -1,31 +1,28 @@
-.grid {
+.turing_label {
+    transition: opacity 0.3s ease-in-out;
     position: absolute;
-    width: 89%;
-    height: 36%;
-    top: 18vh;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
-}
+    font-weight: 600;
+    font-size: 350px;
+    letter-spacing: -0.04em;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 15vh;
+    text-align: center;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    z-index: 0;
+    span {
+      background: linear-gradient(183.63deg, #9EB6D7 -53.18%, #0A5093 64.64%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
 
-.gridhover__container {
-    z-index: 1;
-}
-
-.color_cell {
-    background-image: url('../../static/images/cell_bg.svg');
-    background-size: cover;
+.hideTuring {
     opacity: 0;
-    transition: opacity 0.3s ease-out;
-}
-
-.active {
-    /* background: rgb(0,121,194);
-    background: linear-gradient(90deg, rgba(0,121,194,1) 0%, rgba(19,95,174,1) 50%, rgba(82,141,222,1) 100%);
-    backdrop-filter: blur(4px); */
-    opacity: 1;
 }

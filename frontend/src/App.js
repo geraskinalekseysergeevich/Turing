@@ -13,11 +13,12 @@ import BgAnimation from './components/BgAnimation/BgAnimation';
 
 function App() {
 
-    const [visible, setVisible]  = useState(false)
+    const [visibleSidebar, setVisibleSidebar]  = useState(false)
+    const [visibleTuring, setVisibleTuring] = useState(true)
     const [selectedHistory, setSelectedHistory] = useState({ question: '', answer: '' })
 
     const toggleSidebar  = ()  =>  {
-        setVisible(!visible)
+        setVisibleSidebar(!visibleSidebar)
     }
 
     const selectHistory = (quest, answ) => {
@@ -26,6 +27,7 @@ function App() {
             answer: answ 
         })
         toggleSidebar()
+        setVisibleTuring(false)
     }
 
     const resetStates = () => {
@@ -34,14 +36,14 @@ function App() {
 
     return (
         <div className="App">
-            <BgAnimation />
+            <BgAnimation visibleTuring={visibleTuring}/>
             <div className='content__container'>
                 <Sidebar 
-                    visible={visible} 
+                    visible={visibleSidebar} 
                     toggleSidebar={toggleSidebar}
                     selectHistory={selectHistory}
                 /> 
-                {!visible && 
+                {!visibleSidebar && 
                     <div style={{position: "absolute", left: "75px", top: "65px", zIndex: 10}}>
                         <SidebarIcon icon={burger_icon} toggleSidebar={toggleSidebar}/>
                     </div>
@@ -51,7 +53,7 @@ function App() {
                     <div className='dialogcontent__container'>
                         {(selectedHistory.question !== '' && selectedHistory.answer !==  '')
                             ? <HistoryScreen selectedHistory={selectedHistory}/>
-                            : <DialogScreen />
+                            : <DialogScreen setVisibleTuring={setVisibleTuring}/>
                         }
                     </div>
                     <div className='footer__container'>
@@ -59,6 +61,7 @@ function App() {
                         <Tooltip 
                             anchorSelect=".tooltip_hover_element" 
                             place="top-end" 
+                            noArrow={true}
                             className='tooltip__container'
                             content={data.tooltipExample}
                         />

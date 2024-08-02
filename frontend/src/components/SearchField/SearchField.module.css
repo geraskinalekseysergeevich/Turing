@@ -7,8 +7,8 @@
 .searchfield__container img {
     cursor: pointer;
     position: absolute;
-    right: 40px;
-    top: 30px;
+    right: 30px;
+    top: 18px;
     z-index: 2;
 }
 .disabled {
@@ -23,8 +23,8 @@
 }
 input.search_field {
     width: 100%;
-    height: 90px;
-    border-radius: 24px;
+    height: 60px;
+    border-radius: 100px;
     border: none;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0px 0px 22.08px 0px #FFFFFF1F inset;
@@ -37,10 +37,10 @@ input.search_field:focus {
 }
   
 input.search_field[placeholder] {
-    padding: 30px 28px;
+    padding: 18px 35px;
     box-sizing: border-box;
-    font-size: 20px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    font-weight: 300;
+    color: #FFFFFF;
 }
-::placeholder  { color: rgba(255, 255, 255, 0.43) }
+::placeholder  { color: rgba(255, 255, 255, 0.43); }

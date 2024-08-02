@@ -11,6 +11,7 @@ const Sidebar = ({visible, toggleSidebar, selectHistory}) => {
                 <SidebarIcon icon={cross} toggleSidebar={toggleSidebar}/>
             </div>
             <div className={classes.sidebar_content}>
+                <div className={classes.timeline}>Предыдущие 7 дней</div>
                 <ul>
                     {Object.entries(data.historyExamples).map(([question, answer], index) => (
                         <div key={index} onClick={() => selectHistory(question, answer)}>

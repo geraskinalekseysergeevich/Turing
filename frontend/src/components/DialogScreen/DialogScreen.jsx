@@ -5,7 +5,7 @@ import AnswerField from '../AnswerField/AnswerField';
 import QuestionField from '../QuestionField/QuestionField';
 import data from '../../static/fields/data.json'
 
-const DialogScreen = ({selectedHistory}) => {
+const DialogScreen = ({setVisibleTuring}) => {
 
     const [questionText, setQuestionText] = useState('')
     const [answerText, setAnswerText] = useState('')
@@ -18,8 +18,8 @@ const DialogScreen = ({selectedHistory}) => {
 
     const setAnswer = () => {
         const answer = getRandomAnswer()
-        console.log(answer)
         setAnswerText(answer)
+        setVisibleTuring(false)
     }
 
     return (

@@ -3,18 +3,12 @@
 }
 
 .App {
-  background: #31302F;
+  background: linear-gradient(180deg, #001E3A 0%, #1381E9 100%);
   height: 100vh;
   display: flex;
   justify-content: center;
 }
-
 .content__container {
-  background-image: url('./static/images/bg_layer_with_text.svg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
   width: 100%;
   position: relative;
 }
@@ -25,34 +19,6 @@
   width: 100%;
   height: 100%;
 }
-.turing_label {
-  position: absolute;
-  font-weight: 600;
-  font-size: 350px;
-  letter-spacing: -0.04em;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 20vh;
-  text-align: center;
-  -webkit-touch-callout:none;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-  z-index: 0;
-  span {
-    margin: 0;
-    padding: 0;
-    color: #D7D8CE;
-    opacity: 0.09;
-  }
-}
-
-.turing_label span:hover {
-  color: #0079C2;
-}
 
 .dialogcontent__container {
   padding: 0 100px;
@@ -62,7 +28,7 @@
 .footer__container {
   display: flex;
   justify-content: flex-end;
-  padding: 35px 80px 45px 80px;
+  padding: 0 75px 75px 75px;
 }
 
 .footer__container img {
@@ -70,14 +36,13 @@
 }
 
 .footer__container .tooltip__container {
-  background-color: #31302F;
-  opacity: 1;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 18px;
+  background: #345B80;
+  color: #FFFFFFAD;
+  font-size: 14px;
   font-family: "Montserrat";
-  font-weight: 500;
-  border-radius: 15px;
-  padding: 15px;
+  font-weight: 400;
+  border-radius: 10px;
+  padding: 20px;
   max-width: 500px;
   z-index: 10;
 }
