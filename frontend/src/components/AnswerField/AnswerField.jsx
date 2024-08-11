@@ -1,13 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './AnswerField.module.css';
 import { TypeAnimation } from 'react-type-animation';
 
 const AnswerField = ({answerText, animated=true}) => {
+    
+    const messageEndRef = useRef(null)
+    const [key, setKey] = useState(0)
 
-    const [key, setKey] = useState(0);
+    const scrollToBottom = () => {
+        if (messageEndRef.current) {
+            messageEndRef.current.scrollIntoView({ behavior:'smooth' })
+        }
+    }
+
+    useEffect(() => {
+        const observer = new MutationObserver(scrollToBottom)
+        if (messageEndRef.current) {
+            observer.observe(messageEndRef.current.parentNode, { childList: true, subtree: true })
+        }
+
+        return () => observer.disconnect()
+    }, [])
 
     useEffect(() => { 
-        setKey(prevKey => prevKey + 1);
+        setKey(prevKey => prevKey + 1)
     }, [answerText]);
 
     return (
@@ -23,6 +39,7 @@ const AnswerField = ({answerText, animated=true}) => {
             />
             : <p className={classes.answer_text}>{answerText}</p>
             }
+            <div ref={messageEndRef}/>
         </div>
     );
 };

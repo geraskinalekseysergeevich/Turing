@@ -1,7 +1,7 @@
 .header__container {
     display: flex;
     justify-content: flex-end;
-    padding: 60px 75px;
+    padding: 40px 55px;
     z-index: 2;
 }
 

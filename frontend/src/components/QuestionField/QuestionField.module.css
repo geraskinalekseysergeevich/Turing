@@ -1,9 +1,12 @@
 .question_field {
     width: 100%;
+    max-width: 850px;
+    margin-left: auto;
     display: flex;
     justify-content: flex-end;
     box-sizing: border-box;
     padding: 0 25px;
+    margin-top: 10px;
 }
 
 .question_field p {

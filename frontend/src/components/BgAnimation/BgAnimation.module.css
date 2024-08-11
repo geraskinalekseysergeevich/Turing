@@ -1,8 +1,11 @@
+@media screen {  
+}
+
 .turing_label {
     transition: opacity 0.3s ease-in-out;
     position: absolute;
     font-weight: 600;
-    font-size: 350px;
+    font-size: 300px;
     letter-spacing: -0.04em;
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +20,8 @@
     user-select:none;
     z-index: 0;
     span {
-      background: linear-gradient(183.63deg, #9EB6D7 -53.18%, #0A5093 64.64%);
+      background: linear-gradient(180deg, #9EB6D7 -53%, #0A5296 93%);
+      /* background: linear-gradient(183.63deg, #9EB6D7 -53.18%, #0A5093 64.64%); */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }

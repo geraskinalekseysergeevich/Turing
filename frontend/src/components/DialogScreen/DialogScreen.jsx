@@ -1,39 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './DialogScreen.module.css';
-import SearchField from '../SearchField/SearchField';
 import AnswerField from '../AnswerField/AnswerField';
 import QuestionField from '../QuestionField/QuestionField';
-import data from '../../static/fields/data.json'
 
-const DialogScreen = ({setVisibleTuring}) => {
-
-    const [questionText, setQuestionText] = useState('')
-    const [answerText, setAnswerText] = useState('')
-
-    const getRandomAnswer = () => {
-        const { answerExamples } = data;
-        const randomIndex = Math.floor(Math.random() * answerExamples.length);
-        return answerExamples[randomIndex];
-    };
-
-    const setAnswer = () => {
-        const answer = getRandomAnswer()
-        setAnswerText(answer)
-        setVisibleTuring(false)
-    }
+const DialogScreen = ({ messages, animated }) => {
 
     return (
-        <div className={classes.search__container}>
-            {questionText &&
-                <QuestionField questionText={questionText}/>
-            }
-            {answerText &&
-                <AnswerField answerText={answerText} />
-            }
-            <SearchField 
-                setAnswer={setAnswer}
-                setQuestionText={setQuestionText}
-            />
+        <div className={classes.messages__container}>
+            {messages.map((message) => (
+                <div key={message.id}>
+                    <QuestionField questionText={message.question.text} />
+                    <AnswerField answerText={message.answer.text || '...'} animated={animated} />
+                </div>
+            ))}
         </div>
     );
 };

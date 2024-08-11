@@ -1,10 +1,9 @@
-.search__container {
+.messages__container {
+    position: relative;
     margin: 0 auto;
-    max-width: 1050px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 100%;
-    gap: 20px;
     box-sizing: border-box;
+    width: 100%;
 }

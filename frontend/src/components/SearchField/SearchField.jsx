@@ -1,39 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import data from '../../static/fields/data.json';
 import classes from './SearchField.module.css';
 import arrow from '../../static/images/right_arrow.svg';
 
-const SearchField = ({ setAnswer, setQuestionText, disabled=false }) => {
+const SearchField = ({ sendFunction }) => {
 
-    const [inputText, setInputText] = useState('');
+    const [inputText, setInputText] = useState('')
+    const textareaRef = useRef(null)
 
-    const handleSearchChange = event => {
+    const handleInputChange = (event) => {
         setInputText(event.target.value)
     }
 
     const handleEnter = () => {
-        if (inputText !== '') {
-            setQuestionText(inputText)
+        if (inputText.trim() !== '') {
+            sendFunction(inputText)
             setInputText('')
-            setAnswer()
         }
     }
 
-    const handleKeyEnter = e => {
+    const handleKeyEnter = (e) => {
         if (e.key === 'Enter') {
-            handleEnter()
+            if (!e.shiftKey) {
+                e.preventDefault()
+                handleEnter()
+            }
         }
     }
+
+    useEffect(() => {
+        if(textareaRef.current) {
+            textareaRef.current.style.height = 'auto'
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+        }
+    }, [inputText])
 
     return (
-        <div className={`${classes.searchfield__container} ${disabled ? classes.disabled : ''}`}>
-            <input
-                className={classes.search_field}
-                placeholder={data.searchFieldText}
-                value={inputText}
-                onChange={handleSearchChange}
-                onKeyDown={handleKeyEnter}
-            />
+        <div className={classes.searchfield__container}>
+                <textarea
+                    ref={textareaRef}
+                    className={classes.search_field}
+                    placeholder={data.searchFieldText}
+                    value={inputText}
+                    rows={1}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyEnter}
+                />
             <img onClick={handleEnter} src={arrow} alt="icon" />
         </div>
     );
