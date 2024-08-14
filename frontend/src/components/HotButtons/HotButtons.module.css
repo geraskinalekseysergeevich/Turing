@@ -1,0 +1,50 @@
+.hotbuttons__container {
+    margin-bottom: 12px;
+    transition: opacity 1s ease-in-out;
+}
+.hide_hotbuttons {
+    opacity: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.flex_container {
+    width: 100%;
+    max-width: 1050px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    height: 60px;
+}
+.hotbuttons__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 22.08px 0px #FFFFFF1F inset;
+    border-radius: 30px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.hotbuttons__item:hover p { text-decoration: underline; }
+
+.hotbuttons__item p {
+    font-size: 18px;
+    font-weight: 300;
+    color: #FFF;
+    line-height: 130%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.more_button {
+    max-width: 90px;
+}

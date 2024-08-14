@@ -15,40 +15,11 @@
     margin: 0;
 }
 
-.sidebar__container .timeline {
-    padding-left: 60px;
-    font-weight: 500;
-    font-size: 18px;
-    color: #FFFFFF6B;
-    margin-top: 40px;
-}
-
-.sidebar__container ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 23px;
-    max-height: 430px;
-    overflow-y: auto;
-}
-.sidebar__container ul > div {
-    padding: 7px 50px 7px 60px;
-    cursor: pointer;
-    color: #ffffff;
-    text-decoration: none;
-    transition: all 0.5s ease;
-}
-.sidebar__container li {
-    font-size: 18px;
-    font-weight: 500;
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.sidebar__container ul > div:hover  {
-    text-decoration: underline;
-}
-
 .sidebar_content {
     height: 100%;
+}
+
+.scroll__container {
+    max-height: 530px;
+    overflow-y: auto;
 }

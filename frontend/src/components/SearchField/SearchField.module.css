@@ -5,20 +5,20 @@
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0px 0px 22.08px 0px #FFFFFF1F inset;
     border-radius: 30px;
-    padding: 10px 55px 10px 0;
+    padding: 10px 62px 10px 0;
     box-sizing: border-box;
 }
 
 .searchfield__container img {
     cursor: pointer;
     position: absolute;
-    right: 21px;
+    right: 25px;
     bottom: 19px;
     z-index: 2;
 }
 
 textarea.search_field {
-    padding: 8px 10px 3px 25px;
+    padding: 8px 10px 3px 30px;
     box-sizing: border-box;
     resize: none;
     width: 100%;

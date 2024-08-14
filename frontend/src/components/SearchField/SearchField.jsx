@@ -3,7 +3,7 @@ import data from '../../static/fields/data.json';
 import classes from './SearchField.module.css';
 import arrow from '../../static/images/right_arrow.svg';
 
-const SearchField = ({ sendFunction }) => {
+const SearchField = ({ textFromHotButton, setTextFromHotButton, sendFunction }) => {
 
     const [inputText, setInputText] = useState('')
     const textareaRef = useRef(null)
@@ -27,6 +27,13 @@ const SearchField = ({ sendFunction }) => {
             }
         }
     }
+
+    useEffect(() => {
+        if (textFromHotButton) {
+            setInputText(textFromHotButton)
+            setTextFromHotButton('')
+        }
+    }, [textFromHotButton])
 
     useEffect(() => {
         if(textareaRef.current) {

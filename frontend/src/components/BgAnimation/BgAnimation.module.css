@@ -1,8 +1,5 @@
-@media screen {  
-}
-
 .turing_label {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 1s ease-in-out;
     position: absolute;
     font-weight: 600;
     font-size: 300px;

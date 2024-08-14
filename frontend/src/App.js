@@ -6,26 +6,28 @@ import SidebarIcon from './components/Sidebar/SidebarIcon';
 import DialogScreen from './components/DialogScreen/DialogScreen';
 import burger_icon from './static/images/burger_icon.svg'
 import info_icon from './static/images/info_icon.svg';
-import {Tooltip} from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import data from './static/fields/data.json';
-import BgAnimation from './components/BgAnimation/BgAnimation';
-import {getAllUserDialogs} from './http/index.js';
-import { getDialogById } from './http/index.js';
+import BgAnimation from './components/BgAnimation/BgAnimation.jsx';
 import SearchField from './components/SearchField/SearchField.jsx';
-import { sendMessage, createNewDialog } from './http/index.js';
 import MessagePair from './components/MessagePair/MessagePair.jsx';
+import { CreateNewDialogFetch, GetAllUserDialogsFetch } from './http/controllers/DialogsController.js';
+import { GetDialogByIdFetch } from './http/controllers/HistoryController.js';
+import { PostMessageFetch } from './http/controllers/MessageController.js';
+import HotButtons from './components/HotButtons/HotButtons.jsx';
 
 function App() {
 
     const endOfMessagesRef = useRef(null)
     const [visibleSidebar, setVisibleSidebar]  = useState(false)
-    const [visibleTuring, setVisibleTuring] = useState(true)
+    const [visibleHomePage, setVisibleHomePage] = useState(true)
     const [historyVisible, setHistoryVisible] = useState(false)
 
     const [userDialogs, setUserDialogs] = useState([])
     const [history, setHistory] = useState([])
     const [messages, setMessages] = useState([])
     const [dialogId, setDialogId] = useState(null)
+    const [textFromHotButton, setTextFromHotButton] = useState('')
 
     const scrollToBottom = () => {
         if (endOfMessagesRef.current) {
@@ -41,50 +43,51 @@ function App() {
         setVisibleSidebar(!visibleSidebar)
     }
 
-    const getDialogHistory = async (dialogId) => {
-        const data = await getDialogById(dialogId)
-        setHistoryVisible(true)
-        setHistory(data)
+    const fetchDialogHistory = async (dialogId) => {
+        setVisibleHomePage(false)
         toggleSidebar()
-        setVisibleTuring(false)
+        const data = await GetDialogByIdFetch(dialogId)
+        setHistoryVisible(true)
+        setMessages([])
+        setHistory(data)
     }
 
-    const resetStates = () => {
+    const reloadPage = () => {
         window.location.reload()
     }
 
-    const fetchDialogs = async () => {
-        const data = await getAllUserDialogs()
+    const fetchAllUserDialogs = async () => {
+        const data = await GetAllUserDialogsFetch()
         setUserDialogs(data)
     }
 
     useEffect(() => {
-        fetchDialogs()
+        fetchAllUserDialogs()
     }, [])
 
-    const sendMessageFetch = async (messageText) => {
-        setVisibleTuring(false)
+    const sendMessage = async (messageText) => {
+        setVisibleHomePage(false)
         if (!dialogId) {
             setHistoryVisible(false)
-            const newDialogData = await createNewDialog()
+            const newDialogData = await CreateNewDialogFetch()
             setDialogId(newDialogData.id)
-            const data = await sendMessage(newDialogData.id, messageText)
+            const data = await PostMessageFetch(newDialogData.id, messageText)
             setMessages([...messages, data])
         } else {
             setHistoryVisible(true)
-            const data = await sendMessage(dialogId, messageText)
+            const data = await PostMessageFetch(dialogId, messageText)
             setMessages([...messages, data])
         }
     }
 
     return (
         <div className="App">
-            <BgAnimation visibleTuring={visibleTuring}/>
+            <BgAnimation visibleTuring={visibleHomePage}/>
             <div className='content__container'>
                 <Sidebar 
                     visible={visibleSidebar} 
                     toggleSidebar={toggleSidebar}
-                    getHistoryFunction={getDialogHistory}
+                    getHistoryFunction={fetchDialogHistory}
                     userDialogs={userDialogs}
                     setActiveDialog={setDialogId}
                 /> 
@@ -94,7 +97,7 @@ function App() {
                     </div>
                 }
                 <div className='page'>
-                    <Header resetStates={resetStates}/>
+                    <Header resetStates={reloadPage}/>
                     <div className='dialogcontent__container'>
                         <div className='scroll_container'>
                             <div className='test'>
@@ -113,7 +116,15 @@ function App() {
                             />
                             <div ref={endOfMessagesRef} />
                         </div>
-                        <SearchField sendFunction={sendMessageFetch}/>
+                        <HotButtons 
+                            setTextFromHotButton={setTextFromHotButton} 
+                            visibleHotButtons={visibleHomePage}
+                        />
+                        <SearchField 
+                            textFromHotButton={textFromHotButton} 
+                            setTextFromHotButton={setTextFromHotButton}
+                            sendFunction={sendMessage} 
+                        />
                     </div>
                     <div className='footer__container'>
                         <img src={info_icon} alt="info icon" className='tooltip_hover_element' />
@@ -122,7 +133,7 @@ function App() {
                             place="top-end" 
                             noArrow={true}
                             className='tooltip__container'
-                            content={data.tooltipExample}
+                            content={data.tooltipText}
                         />
                     </div>
                 </div>

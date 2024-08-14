@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SidebarIcon from './SidebarIcon';
 import classes from  './Sidebar.module.css';
 import cross from '../../static/images/cross.svg';
 import newDialog from '../../static/images/new_dialog.svg';
-import { authorization, createNewDialog } from '../../http/index.js';
+import { AuthorizationFetch } from '../../http/controllers/RegAuthController.js';
+import { CreateNewDialogFetch } from '../../http/controllers/DialogsController.js';
+import { sortDialogsFunction } from './sortDialogs.js';
+import SidebarTimeGroup from './SidebarTimeGroup.jsx';
 
 const Sidebar = ({visible, toggleSidebar, userDialogs, getHistoryFunction, setActiveDialog}) => {
 
-    const clickUpdate = (id) => {
+    const { timeGroups, timeGroupLabels } = sortDialogsFunction(userDialogs)
+
+    const getDialogHistory = (id) => {
         setActiveDialog(id)
         getHistoryFunction(id)
     }
 
-    const createNewDialogTest = async () => {
-        const response = await createNewDialog()
+    const createNewDialog = async () => {
+        const response = await CreateNewDialogFetch()
         console.log(response)
     }
 
-    const auth = async () => {
-        const response = await authorization()
+    const authtorizeUser = async () => {
+        const response = await AuthorizationFetch()
         console.log(response)
     }
 
@@ -28,19 +33,28 @@ const Sidebar = ({visible, toggleSidebar, userDialogs, getHistoryFunction, setAc
                 <SidebarIcon icon={cross} onCLickFunction={toggleSidebar}/>
                 <SidebarIcon 
                     icon={newDialog} 
-                    onCLickFunction={createNewDialogTest}
+                    onCLickFunction={createNewDialog}
                 />
             </div>
             <div className={classes.sidebar_content}>
-                <div className={classes.timeline}>Предыдущие 7 дней</div>
-                <ul>
-                    {userDialogs.map((dialog) => (
-                        <div key={dialog.id} onClick={() => clickUpdate(dialog.id)}>
-                            <li>{dialog.title}</li>
-                        </div>
+                <div className={classes.scroll__container}>
+                    {timeGroupLabels.map(({ group, label }, index) => (
+                        timeGroups[group].length > 0 && (
+                            <SidebarTimeGroup
+                                key={index}
+                                timeGroup={timeGroups[group]}
+                                label={label}
+                                getDialogHistoryFunc={getDialogHistory}
+                            />
+                        )
                     ))}
-                </ul>
-                <button style={{marginLeft: 60, marginTop: 10}} onClick={auth}>Войти</button>
+                </div>
+                <button 
+                    style={{marginLeft: 60, marginTop: 10}} 
+                    onClick={authtorizeUser}
+                >
+                    Войти
+                </button>
             </div>
         </div>
     );
