@@ -1,0 +1,22 @@
+.loginform__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: auto auto;
+}
+.loginform__container button {
+    width: 100%;
+    max-width: 70px;
+    margin: 0 auto;
+}
+
+.loginform_input {
+    width: 300px;
+}
+
+input.loginform_input::placeholder {
+    color: black;
+}

@@ -1,20 +1,26 @@
 import CONFIG from "../config/config.js";
 
-export const CreateNewDialogFetch = async () => {
+export const CreateNewDialogFetch = async (token) => {
     const response = await fetch(`${CONFIG.BASE_URL}/turing/dialogs/new`, {
         method: 'POST',
         mode: CONFIG.MODE,
-        headers: CONFIG.HEADERS,
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
     })
     return response.json()
 }
 
-export const GetAllUserDialogsFetch = async () => {
+export const GetAllUserDialogsFetch = async (token) => {
     try {
         const response = await fetch(`${CONFIG.BASE_URL}/turing/dialogs`, {
             method: 'GET',
             mode: CONFIG.MODE,
-            headers: CONFIG.HEADERS,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
         })
 
         if (!response.ok) {

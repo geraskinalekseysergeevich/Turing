@@ -1,11 +1,14 @@
 import CONFIG from '../config/config.js';
 
-export const GetDialogByIdFetch = async (dialogId) => {
+export const GetDialogByIdFetch = async (dialogId, token) => {
     try {
         const response = await fetch(`${CONFIG.BASE_URL}/turing/dialogs/${dialogId}/messages`, {
             method: 'GET',
             mode: CONFIG.MODE,
-            headers: CONFIG.HEADERS,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
         })
 
         if (!response.ok) {

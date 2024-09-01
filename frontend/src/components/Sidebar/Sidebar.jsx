@@ -3,9 +3,8 @@ import SidebarIcon from './SidebarIcon';
 import classes from  './Sidebar.module.css';
 import cross from '../../static/images/cross.svg';
 import newDialog from '../../static/images/new_dialog.svg';
-import { AuthorizationFetch } from '../../http/controllers/RegAuthController.js';
 import { CreateNewDialogFetch } from '../../http/controllers/DialogsController.js';
-import { sortDialogsFunction } from './sortDialogs.js';
+import { sortDialogsFunction } from '../../utils/SortDialogsByTime.js';
 import SidebarTimeGroup from './SidebarTimeGroup.jsx';
 
 const Sidebar = ({visible, toggleSidebar, userDialogs, getHistoryFunction, setActiveDialog}) => {
@@ -22,14 +21,9 @@ const Sidebar = ({visible, toggleSidebar, userDialogs, getHistoryFunction, setAc
         console.log(response)
     }
 
-    const authtorizeUser = async () => {
-        const response = await AuthorizationFetch()
-        console.log(response)
-    }
-
     return (
         <div className={`${classes.sidebar__container} ${visible ? classes.is_open : ''}`}>
-            <div style={{padding: '65px 0 0 60px', display: 'flex', gap: 20}}>
+            <div style={{padding: '65px 0 20px 60px', display: 'flex', gap: 20}}>
                 <SidebarIcon icon={cross} onCLickFunction={toggleSidebar}/>
                 <SidebarIcon 
                     icon={newDialog} 
@@ -49,12 +43,6 @@ const Sidebar = ({visible, toggleSidebar, userDialogs, getHistoryFunction, setAc
                         )
                     ))}
                 </div>
-                <button 
-                    style={{marginLeft: 60, marginTop: 10}} 
-                    onClick={authtorizeUser}
-                >
-                    Войти
-                </button>
             </div>
         </div>
     );

@@ -1,1 +1,0 @@
-Ссылка на макет Figma: https://www.figma.com/design/cS7VPOkVXhblEJTLpkr0yH/%D0%93%D0%90%D0%97%D0%9F%D0%A0%D0%9E%D0%9C?node-id=245-2&t=pS0dZGNz1Cg67VKA-1
