@@ -31,18 +31,21 @@ const Sidebar = ({visible, toggleSidebar, userDialogs, getHistoryFunction, setAc
                 />
             </div>
             <div className={classes.sidebar_content}>
-                <div className={classes.scroll__container}>
-                    {timeGroupLabels.map(({ group, label }, index) => (
-                        timeGroups[group].length > 0 && (
-                            <SidebarTimeGroup
-                                key={index}
-                                timeGroup={timeGroups[group]}
-                                label={label}
-                                getDialogHistoryFunc={getDialogHistory}
-                            />
-                        )
-                    ))}
-                </div>
+                {userDialogs.length === 0 
+                ? <p>Нет истории</p> 
+                :   <div className={classes.scroll__container}>
+                        {timeGroupLabels.map(({ group, label }, index) => (
+                            timeGroups[group].length > 0 && (
+                                <SidebarTimeGroup
+                                    key={index}
+                                    timeGroup={timeGroups[group]}
+                                    label={label}
+                                    getDialogHistoryFunc={getDialogHistory}
+                                />
+                            )
+                        ))}
+                    </div>
+                }
             </div>
         </div>
     );

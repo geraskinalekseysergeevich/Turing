@@ -30,7 +30,7 @@ const LoginForm = () => {
         const response = await AuthorizationFetch(email, password)
         if (response.token) {
             saveTokenToCookie(response.token)
-            navigate('/home')
+            navigate('/')
             console.log('Token saved', response.token)
         } else {
             console.log('Authorization failed')
