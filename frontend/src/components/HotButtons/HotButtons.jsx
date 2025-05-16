@@ -1,56 +1,57 @@
-import React, { useEffect, useState, useRef } from 'react';
-import classes from './HotButtons.module.css';
-import data from '../../static/fields/data.json';
+import { useEffect, useRef, useState } from 'react'
+import data from '../../static/fields/data.json'
+import classes from './HotButtons.module.css'
 
 const HotButtons = ({ setTextFromHotButton, visibleHotButtons }) => {
+	const [isHidden, setIsHidden] = useState(false)
+	const containerRef = useRef(null)
 
-    const [isHidden, setIsHidden] = useState(false)
-    const containerRef = useRef(null)
+	const handleClick = item => {
+		setTextFromHotButton(item)
+	}
 
-    const handleClick = (item) => {
-        setTextFromHotButton(item)
-    }
+	const hideElement = () => {
+		setIsHidden(true)
+	}
 
-    const hideElement = () => {
-        setIsHidden(true);
-    }
+	useEffect(() => {
+		const handleTransitionEnd = () => {
+			if (!visibleHotButtons) {
+				setIsHidden(true)
+			}
+		}
 
-    useEffect(() => {
-        const handleTransitionEnd = () => {
-            if (!visibleHotButtons) {
-                setIsHidden(true)
-            }
-        };
+		const currentContainer = containerRef.current
+		currentContainer.addEventListener('transitionend', handleTransitionEnd)
 
-        const currentContainer = containerRef.current;
-        currentContainer.addEventListener('transitionend', handleTransitionEnd);
+		return () => {
+			currentContainer.removeEventListener('transitionend', handleTransitionEnd)
+		}
+	}, [visibleHotButtons])
 
-        return () => {
-            currentContainer.removeEventListener('transitionend', handleTransitionEnd);
-        };
-    }, [visibleHotButtons]);
-
-    return (
-        <div 
-            className={`${classes.hotbuttons__container} 
+	return (
+		<div
+			className={`${classes.hotbuttons__container} 
                         ${!visibleHotButtons ? classes.hide_hotbuttons : ''}
                         ${isHidden ? classes.hidden : ''}`}
-            ref={containerRef}
-        >
-            <div className={classes.flex_container}>
-                {data.hotButtons.map((item, index) => (
-                    <div 
-                        key={index}
-                        className={classes.hotbuttons__item} 
-                        onClick={() => handleClick(item)}
-                    >
-                        <p>{item}</p>
-                    </div>
-                ))}
-                <div className={`${classes.more_button} ${classes.hotbuttons__item}`}><p>...</p></div>
-            </div>
-        </div>
-    );
-};
+			ref={containerRef}
+		>
+			<div className={classes.flex_container}>
+				{data.hotButtons.map((item, index) => (
+					<div
+						key={index}
+						className={classes.hotbuttons__item}
+						onClick={() => handleClick(item)}
+					>
+						<p>{item}</p>
+					</div>
+				))}
+				<div className={`${classes.more_button} ${classes.hotbuttons__item}`}>
+					<p>...</p>
+				</div>
+			</div>
+		</div>
+	)
+}
 
-export default HotButtons;
+export default HotButtons
